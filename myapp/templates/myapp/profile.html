@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %} <!-- Add this line at the top of your template file -->
+
+{% block title %}Profile - Your Website{% endblock %}
+
+{% block content %}
+<style>
+    /* Add your CSS styles here */
+    body {
+        background-image: url('{% static "picture.jpg" %}'); /* Specify the path to your background image */
+        background-size: cover; /* Cover the entire viewport */
+        background-position: center; /* Center the background image */
+        background-repeat: no-repeat; /* Prevent the background image from repeating */
+    }
+
+    /* Style for navigation links */
+    nav ul {
+        list-style-type: none; /* Remove bullet points */
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline; /* Display list items horizontally */
+        margin-right: 20px; /* Add spacing between list items */
+    }
+
+    nav ul li a {
+        color: white; /* Set link color to white */
+        text-decoration: none; /* Remove underline */
+    }
+
+    nav ul li a:hover {
+        color: red; /* Change link color on hover */
+    }
+</style>
+
+<h1>User Profile</h1>
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <p>Email: {{ user.email }}</p>
+    <!-- Add other profile information here -->
+    
+    <!-- Add Music -->
+    <a href="{% url 'add_music' %}">Add Music</a>
+    
+    <!-- Display uploaded music -->
+    <h2>Uploaded Music</h2>
+    <ul>
+        {% for music in uploaded_music %}
+            <li>{{ music.title }} - {{ music.artist }}</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Logout Form -->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% else %}
+    <p>Please log in to view your profile.</p>
+    <a href="{% url 'login' %}">Log in</a>
+{% endif %}
+<br>
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</nav>
+{% endblock %}

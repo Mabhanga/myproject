@@ -1,0 +1,73 @@
+<!-- base.html -->
+{% load static %} <!-- Load the static template tags -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website{% endblock %}</title>
+    <!-- Add any CSS or other meta tags -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-image: url('{% static "picture.jpg" %}'); /* Specify the path to your background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            font-family: Arial, sans-serif; /* Example: Set the font family for the entire page */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+        nav ul {
+            /* Your navigation styles */
+            list-style-type: none; /* Remove bullet points */
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline; /* Display list items horizontally */
+            margin-right: 10px; /* Add spacing between list items */
+        }
+        nav ul li a {
+            color: white; /* Set link color to white */
+            text-decoration: none; /* Remove underline */
+        }
+        nav ul li a:hover {
+            color: red; /* Change link color on hover */
+        }
+        .content {
+            /* Your content styles */
+            padding: 20px; /* Example: Add padding to the content */
+            background-color: rgba(255, 255, 255, 0.5); /* Add a semi-transparent white overlay */
+            border-radius: 10px; /* Example: Add rounded corners to the content */
+            color: yellow; /* Set text color to yellow */
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="content">
+    {% block content %}
+    <!-- Placeholder content -->
+    <h1 style="color: white;">Welcome to Your Website</h1>
+    <p style="color: white;">Explore the world of music through our curated collection of songs, artists, and genres. The ideal place to host your media, i.e. audios and videos. You can choose to allow users to stream directly on your website or offer download options as well. You can also sell your music via your website directly, or provide links to iTunes, Amazon, SoundCloud, etc.</p>
+    {% endblock %}
+</div>
+
+</body>
+</html>

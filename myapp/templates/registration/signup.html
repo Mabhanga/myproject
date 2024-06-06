@@ -1,0 +1,43 @@
+{% load static %} <!-- Add this line at the top of your template file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Add any CSS or other meta tags -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-image: url('{% static "picture.jpg" %}'); /* Specify the path to your background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            font-family: Arial, sans-serif; /* Example: Set the font family for the entire page */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            color: white; /* Set text color to white */
+        }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_username">Username:</label><br>
+        <input type="text" id="id_username" name="username" required><br><br>
+        
+        <label for="id_email">Email:</label><br>
+        <input type="email" id="id_email" name="email" required><br><br>
+        
+        <label for="id_password1">Password 1:</label><br>
+        <input type="password" id="id_password1" name="password1" required><br><br>
+        
+        <label for="id_password2">Password 2:</label><br>
+        <input type="password" id="id_password2" name="password2" required><br><br>
+        
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{% load static %} <!-- Add this line at the top of your template file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Music</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{% static "picture.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"],
+        input[type="file"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Music</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_title">Title:</label>
+            <input type="text" id="id_title" name="title" required>
+            
+            <label for="id_artist">Artist:</label>
+            <input type="text" id="id_artist" name="artist" required>
+            
+            <label for="id_genre">Genre:</label>
+            <input type="text" id="id_genre" name="genre" required>
+            
+            <label for="id_audio_file">Music File:</label>
+            <input type="file" id="id_audio_file" name="audio_file" required>
+            
+            <button type="submit">Upload Music</button>
+        </form>
+    </div>
+</body>
+</html>
