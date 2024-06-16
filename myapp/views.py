@@ -65,19 +65,3 @@ def add_music(request):
     else:
         form = MusicUploadForm()
     return render(request, 'myapp/add_music.html', {'form': form})
-
-def index(request):
-    return render(request, 'index.html')
-
-
-def index(request):
-    """
-    View function for the index page.
-
-    Args:
-        request: The HTTP request object.
-
-    Returns:
-        HttpResponse object with the rendered template.
-    """
-    return render(request, 'index.html')
